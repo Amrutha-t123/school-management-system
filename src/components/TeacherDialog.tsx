@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { teacherService } from "@/services/teacherServices"; // Ensure this service exists
-import { useDepartments } from "@/hooks/useDepartments"; // To show departments in dropdown
+import { teacherService } from "@/services/teacherServices"; 
+import { useDepartments } from "@/hooks/useDepartments"; 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -17,14 +17,14 @@ import {
 import { Loader2 } from "lucide-react";
 
 interface Props {
-  teacher?: any; // If passed, we are in Edit Mode
-  onSuccess: () => void; // Function to refresh the list after saving
+  teacher?: any; 
+  onSuccess: () => void; 
 }
 
 export default function TeacherDialog({ teacher, onSuccess }: Props) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { departments } = useDepartments(); // Fetch departments for the dropdown
+  const { departments } = useDepartments(); 
 
   const { register, handleSubmit, reset } = useForm({
     defaultValues: teacher || {
@@ -41,13 +41,13 @@ export default function TeacherDialog({ teacher, onSuccess }: Props) {
     setLoading(true);
     try {
       if (teacher) {
-        await teacherService.update(teacher.id, data); // Edit existing
+        await teacherService.update(teacher.id, data); 
       } else {
-        await teacherService.create(data); // Create new
+        await teacherService.create(data); 
       }
       setOpen(false);
       reset();
-      onSuccess(); // Refresh parent page
+      onSuccess(); 
     } catch (error) {
       alert("Failed to save teacher details.");
       console.error(error);

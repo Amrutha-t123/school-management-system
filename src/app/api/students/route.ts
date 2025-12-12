@@ -1,34 +1,31 @@
 import { NextResponse } from "next/server";
-// ✅ FIXED IMPORT: Using relative path to find mockData from 3 folders deep
+// Use relative path
 import { students, departments, generateId } from "../../../lib/mockData";
 
-// GET: Fetch all students (Optional: Filter by Department ID)
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const departmentId = searchParams.get("departmentId");
 
-  // If a departmentId is provided in the URL, filter the list
   if (departmentId) {
     const filteredStudents = students.filter((s) => s.departmentId === departmentId);
     return NextResponse.json(filteredStudents);
   }
-
-  // Otherwise, return all students
   return NextResponse.json(students);
 }
 
-// POST: Create a new Student
 export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    // Find the department to get its name (for display purposes)
+    // Find the full department object
     const department = departments.find((d) => d.id === body.departmentId);
 
     const newStudent = {
       id: generateId(),
-      ...body, // Spreads firstName, lastName, email, etc.
-      departmentName: department ? department.name : "Unknown Department",
+      ...body,
+      // ✅ FIX: Save the department details as an object
+      department: department ? { id: department.id, name: department.name } : null,
+      departmentName: department ? department.name : "Unknown",
       createdAt: new Date().toISOString()
     };
 

@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
 import { teacherService } from '@/services/teacherServices';
-// Ensure this path matches where you keep your types
+
 import { Teacher } from '@/types/index'; 
 
-// ✅ FIX: The word 'export' MUST be here
+
 export function useTeachers(departmentId?: string) {
   const [teachers, setTeachers] = useState<Teacher[]>([]);
   const [loading, setLoading] = useState(false);

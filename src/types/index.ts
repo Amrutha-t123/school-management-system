@@ -30,23 +30,27 @@ export interface Department {
   createdAt?: string;
 }
 
+// src/types/index.ts
+
 export interface Student {
   id: string;
-  firstName: string; 
+  firstName: string;
   lastName: string;
   email: string;
   phone?: string;
-  address?: string;
   dateOfBirth?: string;
+  address?: string;
   departmentId: string;
-  departmentName?: string; 
-  // If the API returns the department object nested:
+  departmentName?: string;
+  
+  // ✅ UPDATE THIS PART: Add 'id' here
   department?: {
+    id: string;     // <--- This was missing!
     name: string;
   };
 }
 
-// ✅ FIXED: Changed 'name' to 'firstName' and 'lastName' to match API
+// You might need to do the same for Teacher if you get a similar error later:
 export interface Teacher {
   id: string;
   firstName: string;
@@ -55,14 +59,14 @@ export interface Teacher {
   phone?: string;
   subject: string;
   salary?: number;
-  
-  // ✅ Added these two lines to fix the error
   dateOfBirth?: string;
   address?: string;
-
   departmentId: string;
   departmentName?: string;
+  
+  // ✅ Add this for Teacher too if needed
   department?: {
+    id: string;
     name: string;
   };
 }

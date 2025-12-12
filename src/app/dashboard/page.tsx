@@ -3,39 +3,38 @@
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, GraduationCap, Building2, Loader2 } from "lucide-react";
+// Import the services
 import { departmentService } from "@/services/departmentServices";
 import { studentService } from "@/services/studentServices";
 import { teacherService } from "@/services/teacherServices";
 
 export default function DashboardPage() {
-  // State to store the counts
+  // State to hold the numbers
   const [stats, setStats] = useState({
     departments: 0,
     students: 0,
     teachers: 0,
   });
-  
-  // State to handle loading status
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        // Fetch all data in parallel (at the same time)
+        // 1. Fetch all data from the API
         const [depts, students, teachers] = await Promise.all([
           departmentService.getAll(),
           studentService.getAll(),
           teacherService.getAll(),
         ]);
 
-        // Update state with the length (count) of each list
+        // 2. Count the items (.length) and update state
         setStats({
           departments: depts.length || 0,
           students: students.length || 0,
           teachers: teachers.length || 0,
         });
       } catch (error) {
-        console.error("Failed to load dashboard stats", error);
+        console.error("Failed to fetch dashboard stats", error);
       } finally {
         setIsLoading(false);
       }
@@ -82,9 +81,7 @@ export default function DashboardPage() {
   );
 }
 
-// ------------------------------------------------------------------
-// Helper Component (keeps the main code clean)
-// ------------------------------------------------------------------
+// Helper Component for the Cards
 function DashboardCard({
   title,
   count,

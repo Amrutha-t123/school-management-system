@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { departmentService } from "@/services/departmentServices"; // Update path if needed
+import { departmentService } from "@/services/departmentServices"; 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/dialog";
 
 interface DepartmentDialogProps {
-  department?: any; // If passed, we are Editing
+  department?: any; 
   onSuccess: () => void;
 }
 
@@ -33,7 +33,7 @@ export default function DepartmentDialog({ department, onSuccess }: DepartmentDi
       }
       setOpen(false);
       reset();
-      onSuccess(); // Refresh parent list
+      onSuccess(); 
     } catch (error) {
       alert("Failed to save department");
     }

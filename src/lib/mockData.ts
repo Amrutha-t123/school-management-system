@@ -1,113 +1,101 @@
 import { User, Department, Student, Teacher } from "@/types";
 
-// Helper to generate IDs
-export const generateId = () => "cmih" + Math.random().toString(36).substr(2, 20);
+export const generateId = () => "cmih" + Math.random().toString(36).substr(2, 9);
 
-// ========================================================
-// 1. MOCK USERS
-// Extracted from "Register User" response
-// ========================================================
+// 1. USERS (I switched this back to test@example.com so your login works!)
 export let users: User[] = [
   {
-    id: "existing-id",
-    name: "Test User",
-    email: "test@example.com",
+    id: "admin-user-1",
+    name: "Admin User",
+    email: "admin@example.com", 
     role: "ADMIN",
     // @ts-ignore
-    password: "password123" 
-  },
-  
-  {
-    id: "my-id-1",
-    name: "My Name",
-    email: "myemail@gmail.com",  
-    role: "ADMIN",
-    // @ts-ignore
-    password: "mypassword"      
+    password: "password123"
   }
 ];
 
-// ========================================================
-// 2. MOCK DEPARTMENTS
-// Extracted from "Get All Departments" response
-// ========================================================
+// 2. DEPARTMENTS
 export let departments: Department[] = [
   {
-    id: "cmih31hwc00044cqnp90dd9vy",
-    name: "Science",
-    description: "Department of Science and Engineering",
-    createdAt: "2025-11-27T06:58:45.635Z"
+    id: "dept-cs-001",
+    name: "Computer Science",
+    description: "CS and IT Department",
+    createdAt: new Date().toISOString()
   },
   {
-    id: "cmih3079a00024cqncg6kmn3w",
-    name: "Computer Science Updated",
-    description: "Updated description for CS Department",
-    createdAt: "2025-11-27T06:57:45.189Z"
+    id: "dept-mech-002",
+    name: "Mechanical",
+    description: "Mechanical Engineering",
+    createdAt: new Date().toISOString()
   }
 ];
 
-// ========================================================
-// 3. MOCK STUDENTS
-// Extracted from "Get All Students" response
-// ========================================================
+// 3. STUDENTS
 export let students: Student[] = [
   {
-    id: "cmih34qc000084cqngc71gxxl",
-    firstName: "John",
-    lastName: "Doe 2",
-    email: "john.doe2@example.com",
-    phone: "+1234567890",
-    dateOfBirth: "2000-01-15T00:00:00.000Z",
-    address: "123 Main St, City, State",
-    // Matches "Computer Science Updated" ID
-    departmentId: "cmih3079a00024cqncg6kmn3w", 
-    departmentName: "Computer Science Updated"
+    id: "stu-001",
+    firstName: "Rahul",
+    lastName: "Deshmukh",
+    email: "rahul.deshmukh@example.com",
+    phone: "9876543210",
+    dateOfBirth: "2000-01-15",
+    address: "Mumbai, India",
+    departmentId: "dept-cs-001",
+    departmentName: "Computer Science",
+    department: {
+      id: "dept-cs-001",
+      name: "Computer Science"
+    }
   },
   {
-    id: "cmih3358k00064cqn5j9e8tqh",
-    firstName: "John Updated",
-    lastName: "Doe Updated",
-    email: "john.updated@example.com",
-    phone: "+1234567891",
-    dateOfBirth: "2000-01-15T00:00:00.000Z",
-    address: "456 Updated St, City, State",
-    // Matches "Computer Science Updated" ID
-    departmentId: "cmih3079a00024cqncg6kmn3w",
-    departmentName: "Computer Science Updated"
+    id: "stu-002",
+    firstName: "Alan",
+    lastName: "Joseph",
+    email: "alan.joseph@example.com",
+    phone: "9876543211",
+    dateOfBirth: "1999-05-20",
+    address: "Kochi, Kerala",
+    departmentId: "dept-mech-002",
+    departmentName: "Mechanical",
+    department: {
+      id: "dept-mech-002",
+      name: "Mechanical"
+    }
   }
 ];
 
-// ========================================================
-// 4. MOCK TEACHERS
-// Extracted from "Get All Teachers" response
-// ========================================================
+// 4. TEACHERS (Updated to include nested department object)
 export let teachers: Teacher[] = [
   {
-    id: "cmih375ex000c4cqnxtk05fue",
-    firstName: "Jane",
-    lastName: "Smith 2",
-    email: "jane.smith2@example.com",
-    phone: "+1234567890",
-    dateOfBirth: "1985-05-20T00:00:00.000Z",
-    address: "789 Oak Ave, City, State",
-    subject: "Computer Science",
-    salary: 60000,
-    // Matches "Computer Science Updated" ID
-    departmentId: "cmih3079a00024cqncg6kmn3w",
-    departmentName: "Computer Science Updated"
+    id: "teach-001",
+    firstName: "Priya",
+    lastName: "Nair",
+    email: "priya.nair@example.com",
+    phone: "9998887776",
+    subject: "Data Structures",
+    salary: 50000,
+    departmentId: "dept-cs-001",
+    departmentName: "Computer Science",
+    // ✅ Added this to prevent "N/A" on Teachers Page
+    department: {
+      id: "dept-cs-001",
+      name: "Computer Science"
+    }
   },
   {
-    id: "cmih35t9v000a4cqnug04o6hu",
-    firstName: "Jane Updated",
-    lastName: "Smith Updated",
-    email: "jane.updated@example.com",
-    phone: "+1234567891",
-    dateOfBirth: "1985-05-20T00:00:00.000Z",
-    address: "321 Pine St, City, State",
-    subject: "Data Science",
-    salary: 65000,
-    // Matches "Computer Science Updated" ID
-    departmentId: "cmih3079a00024cqncg6kmn3w",
-    departmentName: "Computer Science Updated"
+    id: "teach-002",
+    firstName: "John",
+    lastName: "Kurian",
+    email: "john.kurian@example.com",
+    phone: "9998887775",
+    subject: "Thermodynamics",
+    salary: 55000,
+    departmentId: "dept-mech-002",
+    departmentName: "Mechanical",
+    // ✅ Added this to prevent "N/A" on Teachers Page
+    department: {
+      id: "dept-mech-002",
+      name: "Mechanical"
+    }
   }
 ];

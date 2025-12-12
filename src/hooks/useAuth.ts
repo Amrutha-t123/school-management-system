@@ -1,4 +1,4 @@
-// src/hooks/useAuth.ts
+
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -8,7 +8,7 @@ export function useAuth() {
   const router = useRouter();
 
   useEffect(() => {
-    // Check for token on initial load
+   
     const token = localStorage.getItem('token');
     if (token) {
       setIsAuthenticated(true);

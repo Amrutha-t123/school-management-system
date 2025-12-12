@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useAuth } from "@/hooks/useAuth"; // We use the hook we created earlier
+import { useAuth } from "@/hooks/useAuth"; 
 import { 
   LayoutDashboard, 
   Building2, 
   Users, 
   GraduationCap, 
   LogOut 
-} from "lucide-react"; // Icons
+} from "lucide-react"; 
 
 const menuItems = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
@@ -39,8 +39,8 @@ export default function Sidebar() {
               href={item.href}
               className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
                 isActive
-                  ? "bg-blue-600 text-white" // Active Style
-                  : "text-slate-400 hover:bg-slate-800 hover:text-white" // Inactive Style
+                  ? "bg-blue-600 text-white" 
+                  : "text-slate-400 hover:bg-slate-800 hover:text-white" 
               }`}
             >
               <Icon className="h-5 w-5" />

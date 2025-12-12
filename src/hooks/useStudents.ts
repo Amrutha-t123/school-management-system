@@ -1,4 +1,4 @@
-// src/hooks/useStudents.ts
+
 import { useState, useEffect, useCallback } from 'react';
 import { studentService } from '@/services/studentServices';
 import { Student } from '@/types';
@@ -11,7 +11,7 @@ export function useStudents(departmentId?: string) {
   const fetchStudents = useCallback(async () => {
     setLoading(true);
     try {
-      // Pass departmentId to the service if it exists
+      
       const data = await studentService.getAll(departmentId);
       setStudents(data);
       setError(null);
@@ -21,7 +21,7 @@ export function useStudents(departmentId?: string) {
     } finally {
       setLoading(false);
     }
-  }, [departmentId]); // Re-run if departmentId changes
+  }, [departmentId]); 
 
   useEffect(() => {
     fetchStudents();

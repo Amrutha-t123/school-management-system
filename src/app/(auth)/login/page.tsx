@@ -8,8 +8,7 @@ import { useRouter } from "next/navigation";
 import { authService } from "@/services/authService";
 import { Loader2 } from "lucide-react";
 
-// --- FIX: REMOVE 'app' FROM THESE IMPORTS ---
-// Correct path points to src/components/ui
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -22,9 +21,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-// ---------------------------------------------
 
-// 1. Define Validation Schema
 const loginSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
   password: z.string().min(1, { message: "Password is required" }),
@@ -37,7 +34,7 @@ export default function LoginPage() {
   const [serverError, setServerError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // 2. Setup Form Hook
+  
   const {
     register,
     handleSubmit,
@@ -50,7 +47,7 @@ export default function LoginPage() {
     },
   });
 
-  // 3. Handle Form Submission
+  
   const onSubmit = async (data: LoginFormValues) => {
     setIsLoading(true);
     setServerError(null);

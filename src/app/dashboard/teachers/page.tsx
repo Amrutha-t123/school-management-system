@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useTeachers } from "@/hooks/useTeachers"; // Ensure this hook exists
+import { useTeachers } from "@/hooks/useTeachers"; 
 import { useDepartments } from "@/hooks/useDepartments";
 import { teacherService } from "@/services/teacherServices";
 import TeacherDialog from "@/components/TeacherDialog";
@@ -19,7 +19,7 @@ import { Trash2, Loader2 } from "lucide-react";
 export default function TeachersPage() {
   const [selectedDept, setSelectedDept] = useState("");
   
-  // Fetch teachers, automatically refetch if selectedDept changes
+ 
   const { teachers, loading, refresh } = useTeachers(selectedDept);
   const { departments } = useDepartments();
 

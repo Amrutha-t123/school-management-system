@@ -1,7 +1,7 @@
 "use client";
 
 import Sidebar from "@/components/Sidebar";
-import ProtectedRoute from "@/components/ProtectedRoute"; // Ensure you created this in src/components
+import ProtectedRoute from "@/components/ProtectedRoute"; 
 
 export default function DashboardLayout({
   children,
@@ -14,7 +14,7 @@ export default function DashboardLayout({
         {/* Fixed Sidebar */}
         <Sidebar />
         
-        {/* Main Content (Shifted right to not hide behind sidebar) */}
+        {/* Main Content  */}
         <main className="flex-1 ml-64 p-8 overflow-y-auto">
           {children}
         </main>

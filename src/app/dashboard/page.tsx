@@ -3,13 +3,13 @@
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, GraduationCap, Building2, Loader2 } from "lucide-react";
-// Import the services
+
 import { departmentService } from "@/services/departmentServices";
 import { studentService } from "@/services/studentServices";
 import { teacherService } from "@/services/teacherServices";
 
 export default function DashboardPage() {
-  // State to hold the numbers
+  
   const [stats, setStats] = useState({
     departments: 0,
     students: 0,
@@ -20,14 +20,14 @@ export default function DashboardPage() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        // 1. Fetch all data from the API
+        
         const [depts, students, teachers] = await Promise.all([
           departmentService.getAll(),
           studentService.getAll(),
           teacherService.getAll(),
         ]);
 
-        // 2. Count the items (.length) and update state
+        
         setStats({
           departments: depts.length || 0,
           students: students.length || 0,

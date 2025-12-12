@@ -2,8 +2,6 @@ import axios from "axios";
 
 
 const api = axios.create({
-  // This looks for the URL in your .env.local file. 
-  // If it can't find it, it defaults to "/api" which works for your local setup.
   
 baseURL: process.env.NEXT_PUBLIC_API_URL || "",
   headers: {

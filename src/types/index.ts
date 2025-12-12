@@ -1,4 +1,4 @@
-// src/types/index.ts
+
 export interface LoginData {
   email: string;
   password: string;
@@ -30,7 +30,7 @@ export interface Department {
   createdAt?: string;
 }
 
-// src/types/index.ts
+
 
 export interface Student {
   id: string;
@@ -43,14 +43,14 @@ export interface Student {
   departmentId: string;
   departmentName?: string;
   
-  // ✅ UPDATE THIS PART: Add 'id' here
+  
   department?: {
-    id: string;     // <--- This was missing!
+    id: string;     
     name: string;
   };
 }
 
-// You might need to do the same for Teacher if you get a similar error later:
+
 export interface Teacher {
   id: string;
   firstName: string;
@@ -64,7 +64,7 @@ export interface Teacher {
   departmentId: string;
   departmentName?: string;
   
-  // ✅ Add this for Teacher too if needed
+  
   department?: {
     id: string;
     name: string;

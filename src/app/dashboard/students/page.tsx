@@ -18,25 +18,25 @@ export default function StudentsPage() {
   const [selectedDept, setSelectedDept] = useState<string>("all"); // Default to "all"
   const [isLoading, setIsLoading] = useState(true);
 
-  // Modal states
+ 
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingStudent, setEditingStudent] = useState<Student | undefined>(undefined);
   const [deleteId, setDeleteId] = useState<string | null>(null);
 
-  // 1. Fetch Departments on load
+  
   useEffect(() => {
     departmentService.getAll().then(setDepartments);
   }, []);
 
-  // 2. Fetch Students whenever 'selectedDept' changes
+ 
   useEffect(() => {
     loadStudents();
-  }, [selectedDept]); // <--- This ensures it re-runs when filter changes
+  }, [selectedDept]);
 
   const loadStudents = async () => {
     setIsLoading(true);
     try {
-      // ✅ FIX: Pass the selectedDept to the service
+      
       const data = await studentService.getAll(selectedDept);
       setStudents(data);
     } catch (error) {

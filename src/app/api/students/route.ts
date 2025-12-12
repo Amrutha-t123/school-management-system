@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-// Use relative path
+
 import { students, departments, generateId } from "../../../lib/mockData";
 
 export async function GET(request: Request) {
@@ -17,13 +17,13 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    // Find the full department object
+    
     const department = departments.find((d) => d.id === body.departmentId);
 
     const newStudent = {
       id: generateId(),
       ...body,
-      // ✅ FIX: Save the department details as an object
+      
       department: department ? { id: department.id, name: department.name } : null,
       departmentName: department ? department.name : "Unknown",
       createdAt: new Date().toISOString()

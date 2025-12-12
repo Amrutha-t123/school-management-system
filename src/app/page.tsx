@@ -1,13 +1,13 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button"; // ShadCN Button
-import { GraduationCap, ArrowRight, UserPlus } from "lucide-react"; // Added UserPlus icon
+import { Button } from "@/components/ui/button";
+import { GraduationCap, ArrowRight, UserPlus } from "lucide-react"; 
 
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-slate-50">
       <div className="text-center space-y-8 p-8 max-w-2xl">
         
-        {/* Logo / Icon */}
+        
         <div className="flex justify-center mb-6">
           <div className="p-4 bg-blue-100 rounded-full">
             <GraduationCap size={64} className="text-blue-600" />

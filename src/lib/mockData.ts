@@ -2,7 +2,7 @@ import { User, Department, Student, Teacher } from "@/types";
 
 export const generateId = () => "cmih" + Math.random().toString(36).substr(2, 9);
 
-// 1. USERS (I switched this back to test@example.com so your login works!)
+// 1. USERS 
 export let users: User[] = [
   {
     id: "admin-user-1",
@@ -64,7 +64,7 @@ export let students: Student[] = [
   }
 ];
 
-// 4. TEACHERS (Updated to include nested department object)
+// 4. TEACHERS
 export let teachers: Teacher[] = [
   {
     id: "teach-001",
@@ -76,7 +76,7 @@ export let teachers: Teacher[] = [
     salary: 50000,
     departmentId: "dept-cs-001",
     departmentName: "Computer Science",
-    // ✅ Added this to prevent "N/A" on Teachers Page
+    
     department: {
       id: "dept-cs-001",
       name: "Computer Science"
@@ -92,7 +92,7 @@ export let teachers: Teacher[] = [
     salary: 55000,
     departmentId: "dept-mech-002",
     departmentName: "Mechanical",
-    // ✅ Added this to prevent "N/A" on Teachers Page
+    
     department: {
       id: "dept-mech-002",
       name: "Mechanical"

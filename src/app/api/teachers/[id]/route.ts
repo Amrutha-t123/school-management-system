@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
-// ✅ FIXED IMPORT: Using relative path to find mockData from 4 folders deep
+
 import { teachers, departments } from "../../../../lib/mockData";
 
-// Helper to find the index of a teacher
+
 const findIndex = (id: string) => teachers.findIndex((t) => t.id === id);
 
-// GET: Fetch a single teacher by ID
+
 export async function GET(request: Request, { params }: { params: { id: string } }) {
   const teacher = teachers.find((t) => t.id === params.id);
 
@@ -16,7 +16,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
   return NextResponse.json(teacher);
 }
 
-// PUT: Update a specific Teacher
+
 export async function PUT(request: Request, { params }: { params: { id: string } }) {
   try {
     const body = await request.json();
@@ -26,7 +26,7 @@ export async function PUT(request: Request, { params }: { params: { id: string }
       return NextResponse.json({ message: "Teacher not found" }, { status: 404 });
     }
 
-    // Logic: If the departmentId is changed, we must also update the departmentName
+   
     let deptName = teachers[index].departmentName;
     
     if (body.departmentId && body.departmentId !== teachers[index].departmentId) {
@@ -36,7 +36,7 @@ export async function PUT(request: Request, { params }: { params: { id: string }
        }
     }
 
-    // Update the teacher data
+    
     teachers[index] = { 
         ...teachers[index], 
         ...body, 
@@ -49,7 +49,7 @@ export async function PUT(request: Request, { params }: { params: { id: string }
   }
 }
 
-// DELETE: Remove a specific Teacher
+
 export async function DELETE(request: Request, { params }: { params: { id: string } }) {
   const index = findIndex(params.id);
 

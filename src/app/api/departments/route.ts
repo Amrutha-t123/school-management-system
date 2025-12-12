@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-// ✅ FIXED IMPORT: Using relative path to guarantee it works
+
 import { departments, generateId } from "../../../lib/mockData"; 
 
 export async function GET() {

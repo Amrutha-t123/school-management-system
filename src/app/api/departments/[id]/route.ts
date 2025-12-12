@@ -1,43 +1,55 @@
 import { NextResponse } from "next/server";
-// ✅ FIXED IMPORT: Using relative path to find mockData from 4 folders deep
-import { departments } from "../../../../lib/mockData";
 
-// Helper function to find the index of a department
-const findIndex = (id: string) => departments.findIndex((d) => d.id === id);
+import { departments } from "@/lib/mockData"; 
 
-// PUT: Update a specific Department
-export async function PUT(request: Request, { params }: { params: { id: string } }) {
+type Params = Promise<{ id: string }>;
+
+export async function GET(
+  request: Request,
+  { params }: { params: Params }
+) {
+  const { id } = await params;
+  
+  
+  const department = departments.find((d) => d.id === id);
+
+  if (department) {
+    return NextResponse.json(department);
+  }
+  return NextResponse.json({ message: "Department not found" }, { status: 404 });
+}
+
+export async function PUT(
+  request: Request,
+  { params }: { params: Params }
+) {
+  const { id } = await params;
+  
   try {
     const body = await request.json();
-    const index = findIndex(params.id);
+    const index = departments.findIndex((d) => d.id === id);
 
-    // If department not found, return 404
-    if (index === -1) {
-      return NextResponse.json({ message: "Department not found" }, { status: 404 });
+    if (index > -1) {
+      departments[index] = { ...departments[index], ...body, updatedAt: new Date().toISOString() };
+      return NextResponse.json(departments[index]);
     }
-
-    // Update the department data
-    departments[index] = { 
-        ...departments[index], 
-        ...body, 
-        updatedAt: new Date().toISOString() 
-    };
-
-    return NextResponse.json(departments[index]);
+    return NextResponse.json({ message: "Department not found" }, { status: 404 });
   } catch (error) {
     return NextResponse.json({ message: "Error updating department" }, { status: 500 });
   }
 }
 
-// DELETE: Remove a specific Department
-export async function DELETE(request: Request, { params }: { params: { id: string } }) {
-  const index = findIndex(params.id);
+export async function DELETE(
+  request: Request,
+  { params }: { params: Params }
+) {
+  const { id } = await params;
+  
+  const index = departments.findIndex((d) => d.id === id);
 
-  if (index !== -1) {
-    // Remove 1 item at the found index
+  if (index > -1) {
     departments.splice(index, 1);
     return NextResponse.json({ message: "Department deleted successfully" });
   }
-
   return NextResponse.json({ message: "Department not found" }, { status: 404 });
 }
